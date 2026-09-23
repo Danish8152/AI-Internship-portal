@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import { Plane, Send, Brain, Fan } from "lucide-react";
+import { Bot, Search, Code2, Brain } from "lucide-react";
 
 type Feature = {
   title: string;
@@ -10,9 +10,8 @@ type Feature = {
   accent: "blue" | "orange";
 };
 
-// Exactly the 4 technology domains taught this cohort (matches the Weeks 1-3
-// breakdown in ProgrammeTimeline.tsx) — not a general list of BSERC's wider
-// expertise areas.
+// The 4 core domains this cohort covers (matches the curriculum stages in
+// ProgrammeTimeline.tsx) — not a general list of BSERC's wider expertise areas.
 const features: Feature[] = [
   {
     title: "Generative Artificial Intelligence (AI)",
@@ -22,21 +21,21 @@ const features: Feature[] = [
     accent: "blue",
   },
   {
-    title: "Advanced Drone Technology (Air Taxi & Defence Drone)",
-    description: "Air taxi systems, defence UAV architectures and autonomy for next-gen drones.",
-    icon: Send,
+    title: "AI Agents & Automation",
+    description: "Multi-step agent workflows, tool use, and guiding AI through real tasks with checks along the way.",
+    icon: Bot,
     accent: "orange",
   },
   {
-    title: "Helicopter Technology",
-    description: "Rotor aerodynamics, vertical-lift systems and rotorcraft design fundamentals.",
-    icon: Fan,
+    title: "Applied AI for Research & Study",
+    description: "Context engineering, retrieval-augmented generation (RAG), and source-grounded research work.",
+    icon: Search,
     accent: "blue",
   },
   {
-    title: "Aircraft Design Technology",
-    description: "Aerodynamics, CFD simulation, structural design and systems integration for aircraft.",
-    icon: Plane,
+    title: "AI for Builders & Creators",
+    description: "Turning ideas into apps, games and content with AI-assisted, hands-on building.",
+    icon: Code2,
     accent: "orange",
   },
 ];
@@ -66,7 +65,7 @@ export const CoreTech: React.FC = () => {
           </h3>
 
           <p className="text-center pb-5 text-gray-400  text-sm sm:text-base max-w-2xl mx-auto">
-            Master cutting-edge technologies across core engineering domains
+            Master cutting-edge AI across core practical domains
           </p>
         </div>
 

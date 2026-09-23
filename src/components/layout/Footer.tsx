@@ -136,7 +136,6 @@ const socialLinks: SocialLink[] = [
 ];
 
 const contactItems: ContactItem[] = [
-  { icon: FiMail, label: "Contact Us", href: "/contact" },
   { icon: FiMail, label: "info@bserc.org", href: "mailto:info@bserc.org" },
   {
     icon: FiMail,
@@ -215,7 +214,7 @@ const Footer = () => {
               <div>
                 <p className="text-base sm:text-lg font-bold">BSERC</p>
                 <p className="text-xs tracking-wide text-slate-400 leading-tight">
-                  Def- Space Education & Innovation
+                  AI Education & Innovation
                 </p>
 
               </div>

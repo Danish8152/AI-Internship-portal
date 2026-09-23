@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import Highlight from "./Highlight";
 import {
-  Rocket,
+  Sparkles,
   Satellite,
+  Hammer,
   Users,
-  Radar,
-  Clock,
   Award,
   ClipboardCheck,
   GraduationCap,
@@ -15,36 +15,14 @@ import {
   ArrowRight,
 } from "lucide-react";
 
-const stats: Array<{
+const capabilities: Array<{
   icon: React.ElementType;
-  value: React.ReactNode;
-  label: string;
-  small?: boolean;
+  text: string;
 }> = [
-  {
-    icon: Users,
-    value: "750",
-    label: "Students Empowered",
-  },
-  {
-    icon: Radar,
-    value: <span className="text-sky-400">4</span>,
-    label: "Technologies",
-  },
-  {
-    icon: Clock,
-    value: (
-      <>
-        <span className="text-orange-500">6</span> Weeks
-      </>
-    ),
-    label: "Intensive Learning",
-  },
-  {
-    icon: Award,
-    value: "50+",
-    label: "BSERC Mentors",
-  },
+  { icon: Sparkles, text: "No Coding Required" },
+  { icon: Hammer, text: "Hands-On Projects" },
+  { icon: Users, text: "Live Mentor Guidance" },
+  { icon: Award, text: "Certificate Included" },
 ];
 
 const highlights = [
@@ -70,7 +48,7 @@ export default function Hero() {
       {/* Background photo + gradient wash */}
       <div className="absolute inset-0" aria-hidden="true">
         <Image
-          src="/images/hero/rocket-launch.jpg"
+          src="/images/space/nebula.jpg"
           alt=""
           fill
           priority
@@ -102,37 +80,42 @@ export default function Hero() {
           {/* Left: copy */}
           <div className="max-w-2xl">
             <div className="mb-5 flex items-center gap-3">
-              <Rocket className="h-3.5 w-3.5 text-orange-500" />
+              <Sparkles className="h-3.5 w-3.5 text-orange-500" />
               <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-orange-500">
                 Building India&apos;s Future
               </span>
             </div>
 
             <h1 className="font-serif text-4xl font-bold leading-tight text-white sm:text-5xl md:text-6xl">
-              Shaping Tomorrow in{" "}
-              <span className="text-sky-400">Space, Defence &amp;</span>{" "}
-              <span className="text-orange-500">Deep Technology</span>
+              Shaping Tomorrow with{" "}
+              <span className="text-sky-400">Generative AI &amp;</span>{" "}
+              <span className="text-orange-500">Autonomous Agents</span>
             </h1>
 
+            <p className="mt-4 text-base font-semibold text-orange-400 sm:text-lg">
+              Be the <Highlight>AI person</Highlight> people turn to.
+            </p>
+
             <p className="mt-5 max-w-xl text-sm leading-relaxed text-zinc-400 sm:text-base">
-              Empowering students through advanced workshops, research-driven
-              learning, expert mentorship and real-world exposure to India&apos;s
-              evolving space and defence ecosystem.
+              Understand how AI really works, then use it to build apps, guide
+              agents through real tasks, strengthen your research and
+              automate the busywork — through live, hands-on training with
+              BSERC mentors.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <Link
-                href="/autumn-internship"
+                href="#curriculum"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-orange-500 px-6 py-3.5 text-sm font-bold text-black transition-all hover:bg-orange-400 active:scale-95"
               >
-                Apply Autumn Internship
+                Explore the AI Internship
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                href="/about"
+                href="#overview"
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 px-6 py-3.5 text-sm font-semibold text-white transition-all hover:bg-white/10 active:scale-95"
               >
-                Explore BSERC
+                See What You&apos;ll Build
               </Link>
             </div>
 
@@ -152,14 +135,14 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right: stats panel */}
+          {/* Right: capability panel */}
           <div className="rounded-2xl border border-white/10 bg-black/50 p-5 shadow-2xl backdrop-blur-md sm:p-6 lg:justify-self-end">
             <div className="space-y-5">
-              {stats.map((stat, i) => {
-                const Icon = stat.icon;
+              {capabilities.map((item, i) => {
+                const Icon = item.icon;
                 return (
                   <div
-                    key={stat.label}
+                    key={item.text}
                     className={`flex items-center gap-3.5 ${
                       i > 0 ? "border-t border-white/10 pt-5" : ""
                     }`}
@@ -167,16 +150,9 @@ export default function Hero() {
                     <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-white/10 text-white">
                       <Icon className="h-5 w-5" />
                     </div>
-                    <div className="min-w-0">
-                      <p
-                        className={`font-serif font-bold leading-tight text-white ${
-                          stat.small ? "text-sm sm:text-base" : "text-xl sm:text-2xl"
-                        }`}
-                      >
-                        {stat.value}
-                      </p>
-                      <p className="mt-0.5 text-xs text-zinc-400">{stat.label}</p>
-                    </div>
+                    <p className="font-serif text-base font-bold leading-tight text-white sm:text-lg">
+                      {item.text}
+                    </p>
                   </div>
                 );
               })}
@@ -185,11 +161,11 @@ export default function Hero() {
         </div>
 
         {/* Partner / initiative logos, looping continuously right to left. A
-            single 4-logo pass isn't dense enough to fill the strip, so the
-            visible set repeats 3x (12 logos), then that whole sequence is
-            duplicated once more (24 total) and animated by exactly -50% —
-            since the second half is identical to the first, the loop point
-            is invisible and it reads as one unbroken, endless strip. */}
+            single 6-logo pass isn't dense enough to fill the strip, so the
+            visible set repeats several times, then that whole sequence is
+            duplicated once more and animated by exactly -50% — since the
+            second half is identical to the first, the loop point is
+            invisible and it reads as one unbroken, endless strip. */}
         <div
           className="relative mt-12 overflow-hidden border-t border-white/10 pt-6 sm:mt-16"
           style={{
