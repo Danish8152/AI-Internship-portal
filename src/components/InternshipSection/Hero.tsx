@@ -112,7 +112,7 @@ export default function Hero() {
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                href="#overview"
+                href="#build"
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 px-6 py-3.5 text-sm font-semibold text-white transition-all hover:bg-white/10 active:scale-95"
               >
                 See What You&apos;ll Build

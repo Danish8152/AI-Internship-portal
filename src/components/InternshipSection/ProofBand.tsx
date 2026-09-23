@@ -10,8 +10,8 @@ const items: Array<{ icon: React.ElementType; text: string }> = [
 
 const ProofBand: React.FC = () => {
   return (
-    <div className="relative w-full bg-black border-y border-white/10 py-6">
-      <div className="max-w-6xl mx-auto px-4 flex flex-wrap items-center justify-center sm:justify-between gap-x-10 gap-y-4">
+    <div className="relative w-full bg-black border-y border-white/10 py-6 px-4">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-4 justify-items-center lg:justify-items-start">
         {items.map((item) => {
           const Icon = item.icon;
           return (

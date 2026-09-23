@@ -6,11 +6,11 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 
 const NAV_ITEMS = [
-  { label: "Home", href: "#top" },
-  { label: "What You'll Build", href: "#build" },
-  { label: "Curriculum", href: "#curriculum" },
-  { label: "FAQs", href: "#faq" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "What You'll Build", href: "/#build" },
+  { label: "Curriculum", href: "/#curriculum" },
+  { label: "FAQs", href: "/faq" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export default function Navbar() {
@@ -32,7 +32,7 @@ export default function Navbar() {
         <nav className="relative z-10 max-w-8xl mx-auto flex items-center justify-evenly px-4 sm:px-6 h-[70px]">
           {/* Logo */}
           <Link
-            href="#top"
+            href="/"
             className="flex items-center gap-2"
             onClick={closeMenu}
           >
@@ -67,7 +67,7 @@ export default function Navbar() {
           {/* Desktop Right */}
           <div className="hidden lg:flex items-center gap-3">
             <Link
-              href="#contact"
+              href="/#contact"
               className="relative px-6 py-2 font-semibold text-white rounded-lg overflow-hidden group"
             >
               <span className="absolute inset-0 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 opacity-80 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></span>
@@ -112,7 +112,7 @@ export default function Navbar() {
               {/* Contact Button */}
               <li className="mt-4 px-4">
                 <Link
-                  href="#contact"
+                  href="/#contact"
                   onClick={closeMenu}
                   className="block text-center py-3 font-semibold text-white rounded-lg bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 transition"
                 >

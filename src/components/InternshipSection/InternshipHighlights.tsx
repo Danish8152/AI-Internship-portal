@@ -15,6 +15,15 @@ const programmeHighlights = [
   "Emphasis on foundational skills for careers in AI, Software, and Emerging Technology sectors",
 ];
 
+const plainWords = [
+  { word: "AI Agent", meaning: "Plans and does multi-step tasks, checking its own work." },
+  { word: "RAG", meaning: "Looks up your own documents before answering." },
+  { word: "Prompt", meaning: "The instruction you give the AI." },
+  { word: "Hallucination", meaning: "A confident but unsupported answer." },
+  { word: "Context Window", meaning: "How much the model can keep in view at once." },
+  { word: "Fine-Tuning", meaning: "Tuning a model on examples for one task." },
+];
+
 const InternshipHighlights = () => {
   return (
     <section
@@ -40,7 +49,7 @@ const InternshipHighlights = () => {
           AI Internship Highlights
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <div className="rounded-xl border border-white/10 bg-[#0f1e33] p-6 sm:p-7">
             <p className="text-sm sm:text-base font-semibold text-cyan-400 mb-4">
               Career Pathways
@@ -67,6 +76,20 @@ const InternshipHighlights = () => {
                 </li>
               ))}
             </ul>
+          </div>
+
+          <div className="rounded-xl border border-white/10 bg-[#141C2E] p-6 sm:p-7">
+            <p className="text-sm sm:text-base font-semibold text-cyan-400 mb-4">
+              AI, in Plain Words
+            </p>
+            <dl className="space-y-2.5">
+              {plainWords.map((t) => (
+                <div key={t.word} className="flex flex-wrap gap-x-1.5 text-sm sm:text-base">
+                  <dt className="font-semibold text-gray-100">{t.word}:</dt>
+                  <dd className="text-gray-400">{t.meaning}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </div>
       </div>

@@ -15,7 +15,7 @@ export default function RegistrationBar() {
           </span>
         </p>
         <Link
-          href="#format"
+          href="/#format"
           className="flex-shrink-0 inline-flex items-center gap-2 rounded-full bg-orange-500 px-5 py-2.5 text-sm font-bold text-black transition hover:bg-orange-400 active:scale-95"
         >
           Notify Me
