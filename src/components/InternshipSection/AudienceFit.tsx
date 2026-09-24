@@ -56,6 +56,38 @@ const AudienceFit: React.FC = () => {
         <p className="mt-8 text-center text-base sm:text-lg font-semibold text-orange-400">
           Nodded at even one? This internship was built for you.
         </p>
+
+        <div className="mt-16 pt-12 border-t border-white/10">
+          <Reveal>
+            <h3 className="text-2xl sm:text-3xl font-bold text-white font-serif mb-8">
+              Bring a task from your world.
+            </h3>
+          </Reveal>
+          <div className="grid gap-8 lg:grid-cols-[7fr_5fr] lg:gap-0">
+            <div className="lg:pr-12">
+              <h4 className="text-xl sm:text-2xl font-bold text-cyan-400 font-serif">
+                Students
+              </h4>
+              <p className="mt-3 max-w-md text-gray-300 text-base sm:text-lg leading-relaxed">
+                Build projects, improve your study workflow, explore research
+                and create work you can explain and show.
+              </p>
+            </div>
+            <div className="lg:pl-12 lg:border-l lg:border-white/10">
+              <h4 className="text-xl sm:text-2xl font-bold text-orange-400 font-serif">
+                Early-career and working professionals
+              </h4>
+              <p className="mt-3 max-w-md text-gray-400 text-base leading-relaxed">
+                Apply AI to research, reports, presentations, career material
+                and repetitive tasks in your working day.
+              </p>
+            </div>
+          </div>
+          <p className="mt-8 pt-4 border-t border-white/10 text-sm font-semibold text-gray-400">
+            Teachers and researchers can adapt the same approach to learning
+            resources, evidence and knowledge work.
+          </p>
+        </div>
       </div>
     </section>
   );

@@ -6,9 +6,15 @@ import Footer from "@/components/layout/Footer";
 import RegistrationBar from "@/components/layout/RegistrationBar";
 
 export const metadata: Metadata = {
-  title: "Gen AI & AI Agents Internship | BSERC",
+  title: "Finally Get It: The Gen AI & AI Agents Internship | BSERC",
   description:
-    "The Gen AI & AI Agents Internship — a practical, hands-on programme by Bharat Space Education Research Centre (BSERC) covering generative AI, AI agents and applied technology.",
+    "A practical Gen AI and AI agents internship taught live by Karan Bagul: six live sessions of two hours each over two weekends. Start from zero, learn the fundamentals, then build apps, research, content and agentic AI workflows.",
+  openGraph: {
+    type: "website",
+    title: "Finally Get It: The Gen AI & AI Agents Internship",
+    description:
+      "Start from zero. Learn the fundamentals, then build with Gen AI and AI agents through live demonstrations and assignments.",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

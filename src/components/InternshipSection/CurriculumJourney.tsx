@@ -26,13 +26,13 @@ const families: Family[] = [
     ],
   },
   {
-    title: "Ground It in Your Sources",
+    title: "Ground it in your sources",
     desc: "Get answers you can trace back.",
     topics: [
       { label: "Prompts and instructions" },
       { label: "Context engineering" },
       { label: "Embeddings and RAG" },
-      { label: "Source-grounded evidence tables" },
+      { label: "Source-grounded study briefs" },
       { label: "Documents, sheets and slides" },
       { label: "Diagrams and charts" },
       { label: "Ask AI what to do next" },
@@ -40,7 +40,7 @@ const families: Family[] = [
     ],
   },
   {
-    title: "Build and Share",
+    title: "Build and share",
     desc: "Turn an idea into something people can use.",
     topics: [
       { label: "Web apps" },
@@ -51,10 +51,11 @@ const families: Family[] = [
       { label: "Hosting and sharing", live: true },
       { label: "Prototype to live app", live: true },
       { label: "Desktop and phone app examples", live: true },
+      { label: "3D objects", live: true },
     ],
   },
   {
-    title: "Guide AI Agents",
+    title: "Guide AI agents",
     desc: "Multi-step work, with checks along the way.",
     topics: [
       { label: "Plan, act, check" },
@@ -67,7 +68,7 @@ const families: Family[] = [
     ],
   },
   {
-    title: "Create and Communicate",
+    title: "Create and communicate",
     desc: "Career material, content and visuals.",
     topics: [
       { label: "Resume and LinkedIn drafts" },
@@ -79,7 +80,7 @@ const families: Family[] = [
     ],
   },
   {
-    title: "Reuse It and Make It Reliable",
+    title: "Reuse it and make it reliable",
     desc: "Turn a method that worked into something repeatable.",
     topics: [
       { label: "Reusable skills" },

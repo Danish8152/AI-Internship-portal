@@ -2,138 +2,29 @@
 
 import React, { useState } from "react";
 import Reveal from "./Reveal";
+import Highlight from "./Highlight";
+import {
+  AppIllustration,
+  GameIllustration,
+  NotesIllustration,
+  ResearchIllustration,
+  CareerIllustration,
+  VideoIllustration,
+  DataIllustration,
+  AgentIllustration,
+} from "./ProjectIllustrations";
 
-type Category = "all" | "build" | "research" | "career";
+type Category = "all" | "build" | "study" | "career";
 
-const T_LABEL = { fontFamily: "inherit", fontWeight: 700 } as const;
-const T_MUTED = { fontFamily: "inherit", fontWeight: 600 } as const;
-
-function AppIllustration() {
-  return (
-    <svg viewBox="0 0 320 200" className="w-full h-auto">
-      <rect x="10" y="10" width="300" height="180" rx="10" fill="none" stroke="#ffffff2e" strokeWidth="2" />
-      <path d="M10 44h300" stroke="#ffffff2e" strokeWidth="2" />
-      <text x="22" y="31" fontSize="13" fill="#e5e7eb" style={T_LABEL}>AI Study Planner</text>
-      <circle cx="284" cy="27" r="5" fill="#22D3EE" />
-      <circle cx="266" cy="27" r="5" fill="#F97316" />
-      <rect x="26" y="64" width="120" height="28" rx="6" fill="none" stroke="#22D3EE" strokeWidth="2" />
-      <text x="36" y="82" fontSize="11" fill="#67e8f9" style={T_MUTED}>Subject</text>
-      <rect x="174" y="64" width="120" height="28" rx="6" fill="none" stroke="#22D3EE" strokeWidth="2" />
-      <text x="184" y="82" fontSize="11" fill="#67e8f9" style={T_MUTED}>Hours / week</text>
-      <rect x="26" y="106" width="120" height="34" rx="8" fill="#F97316" />
-      <text x="86" y="128" fontSize="12" textAnchor="middle" fill="#0a0c16" style={T_LABEL}>Generate Plan</text>
-      <rect x="174" y="106" width="120" height="34" rx="8" fill="none" stroke="#ffffff33" strokeWidth="2" />
-      <text x="234" y="128" fontSize="12" textAnchor="middle" fill="#ffffffaa" style={T_LABEL}>Save Draft</text>
-      <rect x="26" y="152" width="268" height="30" rx="8" fill="#F9731622" stroke="#F97316" strokeWidth="1.5" />
-      <text x="38" y="172" fontSize="12" fill="#fdba74" style={T_MUTED}>4 sessions planned this week</text>
-    </svg>
-  );
-}
-
-function GameIllustration() {
-  return (
-    <svg viewBox="0 0 320 200" className="w-full h-auto">
-      <rect x="10" y="10" width="300" height="180" rx="10" fill="none" stroke="#ffffff2e" strokeWidth="2" />
-      <text x="22" y="26" fontSize="13" fill="#e5e7eb" style={T_LABEL}>Memory Match</text>
-      <text x="298" y="26" fontSize="11" textAnchor="end" fill="#94a3b8" style={T_MUTED}>2 of 3 pairs</text>
-      <rect x="30" y="34" width="76" height="56" rx="8" fill="none" stroke="#22D3EE" strokeWidth="2" />
-      <rect x="122" y="34" width="76" height="56" rx="8" fill="#F97316" />
-      <path d="M150 62l6 6 12-12" stroke="#0a0c16" strokeWidth="2.5" fill="none" />
-      <rect x="214" y="34" width="76" height="56" rx="8" fill="none" stroke="#22D3EE" strokeWidth="2" />
-      <rect x="30" y="106" width="76" height="56" rx="8" fill="#F97316" />
-      <path d="M58 134l6 6 12-12" stroke="#0a0c16" strokeWidth="2.5" fill="none" />
-      <rect x="122" y="106" width="76" height="56" rx="8" fill="none" stroke="#ffffff33" strokeWidth="2" />
-      <rect x="214" y="106" width="76" height="56" rx="8" fill="none" stroke="#22D3EE" strokeWidth="2" />
-    </svg>
-  );
-}
-
-function ResearchIllustration() {
-  return (
-    <svg viewBox="0 0 320 200" className="w-full h-auto">
-      <rect x="10" y="10" width="300" height="180" rx="10" fill="none" stroke="#ffffff2e" strokeWidth="2" />
-      <text x="22" y="26" fontSize="11" fill="#94a3b8" style={T_MUTED}>Source</text>
-      <text x="298" y="26" fontSize="11" textAnchor="end" fill="#94a3b8" style={T_MUTED}>Checked</text>
-      <text x="22" y="52" fontSize="12" fill="#e5e7eb" style={T_LABEL}>[1] Paper A</text>
-      <path d="M110 48h70" stroke="#ffffff33" strokeWidth="2" />
-      <circle cx="270" cy="54" r="16" fill="none" stroke="#22D3EE" strokeWidth="2" />
-      <path d="M262 54l6 6 12-13" stroke="#22D3EE" strokeWidth="2" fill="none" />
-      <text x="22" y="102" fontSize="12" fill="#e5e7eb" style={T_LABEL}>[2] Report B</text>
-      <path d="M126 98h90" stroke="#ffffff33" strokeWidth="2" />
-      <circle cx="270" cy="104" r="16" fill="#F97316" />
-      <path d="M262 104l6 6 12-13" stroke="#0a0c16" strokeWidth="2" fill="none" />
-      <text x="22" y="152" fontSize="12" fill="#e5e7eb" style={T_LABEL}>[3] Blog C</text>
-      <path d="M104 148h60" stroke="#ffffff33" strokeWidth="2" />
-      <circle cx="270" cy="154" r="16" fill="none" stroke="#ffffff44" strokeWidth="2" />
-      <text x="270" y="158" fontSize="13" textAnchor="middle" fill="#ffffff77" style={T_LABEL}>?</text>
-    </svg>
-  );
-}
-
-function NotesIllustration() {
-  return (
-    <svg viewBox="0 0 320 200" className="w-full h-auto">
-      <rect x="10" y="10" width="300" height="180" rx="10" fill="none" stroke="#ffffff2e" strokeWidth="2" />
-      <text x="101" y="24" fontSize="11" textAnchor="middle" fill="#94a3b8" style={T_MUTED}>Notes</text>
-      <rect x="26" y="30" width="150" height="140" rx="6" fill="none" stroke="#ffffff33" strokeWidth="2" />
-      <path d="M40 56h122M40 76h90M40 96h110M40 116h70M40 136h100" stroke="#ffffff44" strokeWidth="2" />
-      <text x="243" y="24" fontSize="11" textAnchor="middle" fill="#94a3b8" style={T_MUTED}>Checklist</text>
-      <rect x="192" y="30" width="102" height="140" rx="6" fill="none" stroke="#22D3EE" strokeWidth="2" />
-      <rect x="206" y="48" width="16" height="16" rx="3" fill="none" stroke="#F97316" strokeWidth="2" />
-      <path d="M209 56l4 4 7-8" stroke="#F97316" strokeWidth="2" fill="none" />
-      <text x="232" y="60" fontSize="10" fill="#e5e7eb" style={T_MUTED}>Quiz 1</text>
-      <rect x="206" y="82" width="16" height="16" rx="3" fill="#F97316" />
-      <path d="M209 90l4 4 7-8" stroke="#0a0c16" strokeWidth="2" fill="none" />
-      <text x="232" y="94" fontSize="10" fill="#e5e7eb" style={T_MUTED}>Quiz 2</text>
-      <rect x="206" y="116" width="16" height="16" rx="3" fill="none" stroke="#ffffff44" strokeWidth="2" />
-      <text x="232" y="128" fontSize="10" fill="#94a3b8" style={T_MUTED}>Quiz 3</text>
-    </svg>
-  );
-}
-
-function AgentIllustration() {
-  return (
-    <svg viewBox="0 0 320 200" className="w-full h-auto">
-      <rect x="10" y="10" width="300" height="180" rx="10" fill="none" stroke="#ffffff2e" strokeWidth="2" />
-      <text x="22" y="26" fontSize="11" fill="#94a3b8" style={T_MUTED}>Task: sort files &amp; check totals</text>
-      <rect x="26" y="80" width="56" height="48" rx="8" fill="none" stroke="#22D3EE" strokeWidth="2" />
-      <text x="54" y="108" fontSize="10" textAnchor="middle" fill="#67e8f9" style={T_LABEL}>Input</text>
-      <rect x="102" y="80" width="56" height="48" rx="8" fill="none" stroke="#22D3EE" strokeWidth="2" />
-      <text x="130" y="108" fontSize="10" textAnchor="middle" fill="#67e8f9" style={T_LABEL}>Plan</text>
-      <rect x="178" y="80" width="56" height="48" rx="8" fill="none" stroke="#22D3EE" strokeWidth="2" />
-      <text x="206" y="108" fontSize="10" textAnchor="middle" fill="#67e8f9" style={T_LABEL}>Act</text>
-      <rect x="254" y="80" width="56" height="48" rx="8" fill="#F97316" />
-      <text x="282" y="108" fontSize="10" textAnchor="middle" fill="#0a0c16" style={T_LABEL}>Check</text>
-      <path d="M82 104h16m-6-6l6 6-6 6" stroke="#ffffff55" strokeWidth="2" fill="none" />
-      <path d="M158 104h16m-6-6l6 6-6 6" stroke="#ffffff55" strokeWidth="2" fill="none" />
-      <path d="M234 104h16m-6-6l6 6-6 6" stroke="#ffffff55" strokeWidth="2" fill="none" />
-      <path d="M282 128v18q0 8-8 8H130q-8 0-8-8v-18" stroke="#ffffff33" strokeWidth="2" strokeDasharray="5 5" fill="none" />
-      <path d="M117 134l5-6 5 6" stroke="#ffffff33" strokeWidth="2" fill="none" />
-      <text x="198" y="160" fontSize="10" textAnchor="middle" fill="#94a3b8" style={T_MUTED}>revise if a check fails</text>
-    </svg>
-  );
-}
-
-function CareerIllustration() {
-  return (
-    <svg viewBox="0 0 320 200" className="w-full h-auto">
-      <rect x="10" y="10" width="300" height="180" rx="10" fill="none" stroke="#ffffff2e" strokeWidth="2" />
-      <rect x="70" y="28" width="180" height="144" rx="8" fill="none" stroke="#ffffff33" strokeWidth="2" />
-      <text x="90" y="48" fontSize="12" fill="#e5e7eb" style={T_LABEL}>Resume Draft</text>
-      <path d="M90 62h140M90 78h100" stroke="#ffffff33" strokeWidth="2" />
-      <rect x="90" y="96" width="140" height="18" rx="4" fill="#F9731622" stroke="#F97316" strokeWidth="1.5" />
-      <text x="98" y="109" fontSize="10" fill="#fdba74" style={T_MUTED}>AI-reviewed against your evidence</text>
-      <path d="M90 130h140M90 146h90" stroke="#ffffff33" strokeWidth="2" />
-      <circle cx="216" cy="40" r="14" fill="#22D3EE" />
-      <path d="M209 40l5 5 9-10" stroke="#0a0c16" strokeWidth="2" fill="none" />
-    </svg>
-  );
-}
+const CATEGORY_LABEL: Record<Exclude<Category, "all">, string> = {
+  build: "Create & build",
+  study: "Study & research",
+  career: "Career & work",
+};
 
 interface Project {
   id: string;
   cat: Exclude<Category, "all">;
-  catLabel: string;
   title: string;
   desc: string;
   skills: string[];
@@ -144,84 +35,104 @@ const projects: Project[] = [
   {
     id: "app",
     cat: "build",
-    catLabel: "Create & Build",
-    title: "Build an AI-powered app",
-    desc: "Turn an idea into a small working app — like a study planner or tracker — guided by AI.",
+    title: "Build your first useful app",
+    desc: "Turn an idea into a small web app, such as a planner or expense splitter, then test how it behaves.",
     skills: ["Prompting", "Iteration"],
     Illustration: AppIllustration,
   },
   {
     id: "game",
     cat: "build",
-    catLabel: "Create & Build",
-    title: "Create a game with AI",
-    desc: "Design and build a small browser game or quiz, then improve it by testing.",
+    title: "Make a game you can play",
+    desc: "Use AI to create a small browser game or quiz, add scoring and improve it by testing.",
     skills: ["Prompting", "Testing"],
     Illustration: GameIllustration,
   },
   {
-    id: "research",
-    cat: "research",
-    catLabel: "Research & Study",
-    title: "Build a research assistant",
-    desc: "Organise sources, compare findings and build a traceable evidence table.",
-    skills: ["RAG", "Source-checking"],
-    Illustration: ResearchIllustration,
-  },
-  {
-    id: "notes",
-    cat: "research",
-    catLabel: "Research & Study",
-    title: "Create a study system",
-    desc: "Turn notes into revision plans and practice questions you can trust.",
+    id: "study",
+    cat: "study",
+    title: "Create your study system",
+    desc: "Turn notes and course files into revision plans, practice questions and a source-grounded study resource.",
     skills: ["Context engineering", "Evaluation"],
     Illustration: NotesIllustration,
   },
   {
-    id: "agent",
-    cat: "career",
-    catLabel: "Career & Agents",
-    title: "Guide an AI agent",
-    desc: "Direct an agent through a multi-step task, with checks along the way.",
-    skills: ["AI agents", "Plan → act → check"],
-    Illustration: AgentIllustration,
+    id: "research",
+    cat: "study",
+    title: "Make research easier to navigate",
+    desc: "Organise papers, compare findings and build an evidence table with traceable sources.",
+    skills: ["RAG", "Source-checking"],
+    Illustration: ResearchIllustration,
   },
   {
     id: "career",
     cat: "career",
-    catLabel: "Career & Agents",
     title: "Strengthen your career toolkit",
-    desc: "Build a resume and portfolio grounded in your real experience.",
+    desc: "Improve a LinkedIn profile draft and resume using your actual experience; organise evidence and application tasks.",
     skills: ["Grounded drafting", "Career evidence"],
     Illustration: CareerIllustration,
+  },
+  {
+    id: "video",
+    cat: "build",
+    title: "Edit and repurpose video",
+    desc: "Explore AI-assisted workflows for selecting clips, arranging a short edit and adding captions.",
+    skills: ["AI-assisted editing", "Captions"],
+    Illustration: VideoIllustration,
+  },
+  {
+    id: "data",
+    cat: "career",
+    title: "Turn data into a useful story",
+    desc: "Clean a spreadsheet, check totals and turn the result into a dashboard, report or presentation.",
+    skills: ["Data checking", "Reporting"],
+    Illustration: DataIllustration,
+  },
+  {
+    id: "agent",
+    cat: "career",
+    title: "Put an agent to work",
+    desc: "Guide an AI agent through a multi-step task involving files, research or a repeatable workflow, with checks along the way.",
+    skills: ["AI agents", "Plan → act → check"],
+    Illustration: AgentIllustration,
   },
 ];
 
 const filters: Array<{ id: Category; label: string }> = [
   { id: "all", label: "All projects" },
-  { id: "build", label: "Build & Create" },
-  { id: "research", label: "Research & Study" },
-  { id: "career", label: "Career & Agents" },
+  { id: "build", label: CATEGORY_LABEL.build },
+  { id: "study", label: CATEGORY_LABEL.study },
+  { id: "career", label: CATEGORY_LABEL.career },
 ];
 
 const ProjectGallery: React.FC = () => {
   const [active, setActive] = useState<Category>("all");
   const shown = active === "all" ? projects : projects.filter((p) => p.cat === active);
+  const status =
+    active === "all"
+      ? `Showing all ${shown.length} projects`
+      : `Showing ${shown.length} of ${projects.length} projects: ${CATEGORY_LABEL[active]}`;
 
   return (
     <section id="build" className="relative w-full py-14 sm:py-20 px-4 bg-black">
       <div className="max-w-6xl mx-auto">
-        <Reveal className="text-center max-w-2xl mx-auto mb-8">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white font-serif mb-3">
-            What You&apos;ll Build
+        <Reveal className="text-center max-w-3xl mx-auto mb-8">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white font-serif mb-4">
+            Give your new skills something to{" "}
+            <Highlight>show for them.</Highlight>
           </h2>
-          <p className="text-gray-400 text-sm sm:text-base">
-            A preview of the kinds of projects the live sessions and
-            assignments build toward.
+          <p className="text-gray-400 text-sm sm:text-base leading-relaxed">
+            Explore projects for college, careers and everyday work. Watch
+            complete demonstrations, then practise with selected builds and
+            assignments.
           </p>
         </Reveal>
 
-        <div className="flex flex-wrap justify-center gap-2 mb-10">
+        <div
+          role="group"
+          aria-label="Filter projects by type"
+          className="flex flex-wrap justify-center gap-2"
+        >
           {filters.map((f) => (
             <button
               key={f.id}
@@ -238,8 +149,15 @@ const ProjectGallery: React.FC = () => {
             </button>
           ))}
         </div>
+        <p
+          role="status"
+          aria-live="polite"
+          className="mt-4 mb-8 min-h-[1.5em] text-center text-sm font-semibold text-gray-400"
+        >
+          {status}
+        </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {shown.map((p, i) => {
             const Illustration = p.Illustration;
             return (
@@ -266,7 +184,7 @@ const ProjectGallery: React.FC = () => {
                       ))}
                     </div>
                     <p className="mt-3 pt-3 border-t border-white/10 text-[11px] font-bold uppercase tracking-wide text-orange-400">
-                      {p.catLabel}
+                      {CATEGORY_LABEL[p.cat]}
                     </p>
                   </div>
                 </div>
@@ -274,6 +192,11 @@ const ProjectGallery: React.FC = () => {
             );
           })}
         </div>
+
+        <p className="mt-10 pt-4 border-t border-white/10 text-sm font-semibold text-gray-400">
+          The final live demonstrations and assignments will be shared with
+          your cohort.
+        </p>
       </div>
     </section>
   );

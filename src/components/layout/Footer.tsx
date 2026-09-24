@@ -226,6 +226,12 @@ const Footer = () => {
               dedicated to advancing space science education and fostering
               innovation across India.
             </p>
+            <p className="text-xs sm:text-sm font-semibold text-slate-200 leading-relaxed max-w-sm mx-auto md:mx-0">
+              Finally Get It: The Gen AI &amp; AI Agents Internship
+              <span className="block font-normal text-slate-400">
+                Led by Karan Bagul
+              </span>
+            </p>
 
             {/* Social Icons */}
             <div className="flex justify-center md:justify-start gap-3">

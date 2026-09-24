@@ -1,11 +1,12 @@
 import React from "react";
-import { Sparkles, Hammer, Users, Award } from "lucide-react";
+import { GraduationCap, Award, CalendarClock, ClipboardCheck } from "lucide-react";
+import { INTERNSHIP } from "@/data/internship";
 
 const items: Array<{ icon: React.ElementType; text: string }> = [
-  { icon: Sparkles, text: "No coding or prior experience needed" },
-  { icon: Hammer, text: "Live, hands-on projects" },
-  { icon: Users, text: "Guided by BSERC mentors" },
-  { icon: Award, text: "Certificate on completion" },
+  { icon: GraduationCap, text: "Close to 100,000 students taught" },
+  { icon: Award, text: "Certificate of completion" },
+  { icon: CalendarClock, text: INTERNSHIP.sessionsLine },
+  { icon: ClipboardCheck, text: "Assignments between sessions" },
 ];
 
 const ProofBand: React.FC = () => {

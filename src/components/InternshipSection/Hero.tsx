@@ -2,33 +2,28 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { ArrowRight, Check, Satellite } from "lucide-react";
 import Highlight from "./Highlight";
+import CircledWord from "./CircledWord";
 import {
-  Sparkles,
-  Satellite,
-  Hammer,
-  Users,
-  Award,
-  ClipboardCheck,
-  GraduationCap,
-  FolderKanban,
-  ArrowRight,
-} from "lucide-react";
+  AppIllustration,
+  GameIllustration,
+  ResearchIllustration,
+  AgentIllustration,
+} from "./ProjectIllustrations";
+import { INTERNSHIP, REGISTER } from "@/data/internship";
 
-const capabilities: Array<{
-  icon: React.ElementType;
-  text: string;
-}> = [
-  { icon: Sparkles, text: "No Coding Required" },
-  { icon: Hammer, text: "Hands-On Projects" },
-  { icon: Users, text: "Live Mentor Guidance" },
-  { icon: Award, text: "Certificate Included" },
+const relevance = [
+  "No coding or prior experience needed. Curiosity is enough.",
+  "Even the advanced topics are taught so they feel simple.",
+  "For students and professionals ready to put AI into practice.",
 ];
 
-const highlights = [
-  { icon: ClipboardCheck, label: "Register" },
-  { icon: GraduationCap, label: "Training" },
-  { icon: FolderKanban, label: "Project" },
+const heroIllustrations = [
+  AppIllustration,
+  GameIllustration,
+  ResearchIllustration,
+  AgentIllustration,
 ];
 
 // All entries confirmed genuinely transparent (checked pixel alpha directly —
@@ -37,7 +32,6 @@ const marqueeLogoSet = [
   { src: "/images/logos/viksit-bharat-abhiyan.png", alt: "Viksit Bharat Abhiyan — 1947 to 2047", width: 746, height: 334 },
   { src: "/images/logos/amritkaallogo-black.png", alt: "Amrit Kaal", width: 758, height: 389 },
   { src: "/images/logos/skill-india-big-logo.svg", alt: "Skill India", width: 202, height: 55 },
-  { src: "/images/logos/isro.png", alt: "ISRO Space Tutor", width: 240, height: 120 },
   { src: "/images/logos/amrit-kaal.png", alt: "Amrit Kaal", width: 220, height: 120 },
   { src: "/img/BSERC_new.png", alt: "BSERC", width: 2048, height: 2048 },
 ];
@@ -76,88 +70,81 @@ export default function Hero() {
       />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 pb-10 pt-14 sm:px-6 sm:pt-20 lg:px-8">
-        <div className="grid gap-10 lg:grid-cols-[1fr_320px] lg:items-center lg:gap-12">
+        <div className="grid gap-10 lg:grid-cols-[1fr_480px] lg:items-center lg:gap-12">
           {/* Left: copy */}
           <div className="max-w-2xl">
-            <div className="mb-5 flex items-center gap-3">
-              <Sparkles className="h-3.5 w-3.5 text-orange-500" />
-              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-orange-500">
-                Building India&apos;s Future
+            <p className="mb-6 inline-flex flex-col gap-1.5 rounded-lg border border-white/25 bg-black/60 px-4 py-3 backdrop-blur-md">
+              <strong className="text-xl font-extrabold leading-tight tracking-tight text-orange-400">
+                {INTERNSHIP.name}
+              </strong>
+              <span className="text-base font-bold leading-snug text-gray-300">
+                The Gen AI &amp; AI Agents <CircledWord>Internship</CircledWord>
               </span>
-            </div>
+            </p>
 
             <h1 className="font-serif text-4xl font-bold leading-tight text-white sm:text-5xl md:text-6xl">
-              Shaping Tomorrow with{" "}
-              <span className="text-sky-400">Generative AI &amp;</span>{" "}
-              <span className="text-orange-500">Autonomous Agents</span>
+              Be the <Highlight>AI person</Highlight> people turn to.
             </h1>
 
-            <p className="mt-4 text-base font-semibold text-orange-400 sm:text-lg">
-              Be the <Highlight>AI person</Highlight> people turn to.
+            <p className="mt-5 max-w-xl text-sm leading-relaxed text-zinc-300 sm:text-base">
+              Understand how AI works, then use it to build apps and games,
+              strengthen your research, create content and automate useful
+              tasks. Learn through live demonstrations and assignments you can
+              connect to your studies, projects and work.
             </p>
 
-            <p className="mt-5 max-w-xl text-sm leading-relaxed text-zinc-400 sm:text-base">
-              Understand how AI really works, then use it to build apps, guide
-              agents through real tasks, strengthen your research and
-              automate the busywork — through live, hands-on training with
-              BSERC mentors.
+            <p className="mt-5 text-sm font-extrabold text-white sm:text-base">
+              {INTERNSHIP.formatLine}
             </p>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-7">
               <Link
-                href="#curriculum"
+                href={REGISTER.href}
+                {...REGISTER.linkProps}
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-orange-500 px-6 py-3.5 text-sm font-bold text-black transition-all hover:bg-orange-400 active:scale-95"
               >
-                Explore the AI Internship
+                {REGISTER.label}
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 href="#build"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 px-6 py-3.5 text-sm font-semibold text-white transition-all hover:bg-white/10 active:scale-95"
+                className="group inline-flex items-center gap-2 text-sm font-bold text-white underline decoration-orange-500 decoration-2 underline-offset-[6px] transition hover:decoration-orange-300"
               >
-                See What You&apos;ll Build
+                See what you&apos;ll build
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
 
-            <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2">
-              {highlights.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <span
-                    key={item.label}
-                    className="flex items-center gap-1.5 text-xs font-medium text-zinc-300"
-                  >
-                    <Icon className="h-3.5 w-3.5 text-orange-500" />
-                    {item.label}
-                  </span>
-                );
-              })}
-            </div>
+            <ul className="mt-6 grid gap-2 text-sm text-zinc-300">
+              {relevance.map((text) => (
+                <li key={text} className="flex items-start gap-2.5">
+                  <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-orange-400" />
+                  <span>{text}</span>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          {/* Right: capability panel */}
-          <div className="rounded-2xl border border-white/10 bg-black/50 p-5 shadow-2xl backdrop-blur-md sm:p-6 lg:justify-self-end">
-            <div className="space-y-5">
-              {capabilities.map((item, i) => {
-                const Icon = item.icon;
-                return (
-                  <div
-                    key={item.text}
-                    className={`flex items-center gap-3.5 ${
-                      i > 0 ? "border-t border-white/10 pt-5" : ""
-                    }`}
-                  >
-                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-white/10 text-white">
-                      <Icon className="h-5 w-5" />
-                    </div>
-                    <p className="font-serif text-base font-bold leading-tight text-white sm:text-lg">
-                      {item.text}
-                    </p>
-                  </div>
-                );
-              })}
+          {/* Right: project drawings */}
+          <figure className="w-full max-w-[520px] lg:justify-self-end">
+            <div
+              role="img"
+              aria-label="Project drawings: a small study-planner app, a memory-match game with a score, a research table with source markers, and an input, plan, action, check agent flow."
+              className="grid grid-cols-2 gap-3 rounded-2xl border border-white/10 bg-black/50 p-3 shadow-2xl backdrop-blur-md sm:p-4"
+            >
+              {heroIllustrations.map((Illustration, i) => (
+                <div
+                  key={i}
+                  className="rounded-lg bg-black/40 p-1.5 ring-1 ring-white/5"
+                >
+                  <Illustration />
+                </div>
+              ))}
             </div>
-          </div>
+            <figcaption className="mt-3 text-sm font-semibold text-zinc-400">
+              A few of the things you&apos;ll explore.
+            </figcaption>
+          </figure>
         </div>
 
         {/* Partner / initiative logos, looping continuously right to left. A
