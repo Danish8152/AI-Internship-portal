@@ -1,10 +1,31 @@
+"use client";
+
+import { useSyncExternalStore } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { INTERNSHIP, REGISTER } from "@/data/internship";
 
+const SHOW_AFTER_PX = 200;
+
+function subscribe(onChange: () => void) {
+  window.addEventListener("scroll", onChange, { passive: true });
+  return () => window.removeEventListener("scroll", onChange);
+}
+
+const getSnapshot = () => window.scrollY > SHOW_AFTER_PX;
+const getServerSnapshot = () => false;
+
 export default function RegistrationBar() {
+  const visible = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 bg-black/95 border-t border-white/10 backdrop-blur-md">
+    <div
+      inert={!visible}
+      aria-hidden={!visible}
+      className={`fixed inset-x-0 bottom-0 z-50 bg-black/95 border-t border-white/10 backdrop-blur-md transition-transform duration-300 ease-out motion-reduce:transition-none ${
+        visible ? "translate-y-0" : "translate-y-full"
+      }`}
+    >
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
         <p className="flex items-center gap-3 text-sm sm:text-base text-gray-100 min-w-0">
           <span className="relative flex h-2.5 w-2.5 flex-shrink-0">
