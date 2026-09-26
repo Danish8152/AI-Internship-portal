@@ -2,6 +2,7 @@
 
 import React from "react";
 import StarField from "./StarField";
+import { INTERNSHIP } from "@/data/internship";
 
 interface PricingRowProps {
   component: string;
@@ -69,21 +70,18 @@ const PricingFees: React.FC = () => {
           {/* Table Body */}
           <div className="divide-y divide-white/10">
             <PricingRow
-              component="Def-Space Autumn Internship Examination Fee (Non-refundable)"
-              indianFee="₹950"
-              nonIndianFee="Not applicable"
-              isIndianHighlight={true}
-              isNonIndianHighlight={true}
-            />
-            <PricingRow
-              component="Def-Space Mentorship Registration Fee"
-              indianFee="₹1,000"
-              nonIndianFee="US$150"
+              component={`${INTERNSHIP.shortName} Fee (Non-refundable)`}
+              indianFee="To be announced"
+              nonIndianFee="To be announced"
               isIndianHighlight={true}
               isNonIndianHighlight={true}
             />
           </div>
         </div>
+
+        <p className="mt-5 text-center text-sm sm:text-base text-gray-400">
+          Dates, fees and joining details will be announced.
+        </p>
       </div>
     </section>
   );

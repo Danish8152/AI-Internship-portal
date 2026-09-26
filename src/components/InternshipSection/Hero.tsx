@@ -28,14 +28,14 @@ const stats: Array<{
   },
   {
     icon: Radar,
-    value: <span className="text-sky-400">4</span>,
-    label: "Technologies",
+    value: <span className="text-sky-400">Technology</span>,
+    label: "Artificial Intelligence",
   },
   {
     icon: Clock,
     value: (
       <>
-        <span className="text-orange-500">6</span> Weeks
+        <span className="text-orange-500">2</span> Weeks
       </>
     ),
     label: "Intensive Learning",
@@ -123,7 +123,7 @@ export default function Hero() {
                 href="/autumn-internship"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-orange-500 px-6 py-3.5 text-sm font-bold text-black transition-all hover:bg-orange-400 active:scale-95"
               >
-                Apply Autumn Internship
+                Apply AI Internship
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link

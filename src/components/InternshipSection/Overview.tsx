@@ -19,7 +19,7 @@ const Overview: React.FC = () => {
             </span>
             {""} is pleased to announce the {""}
             <span className="text-cyan-400 font-semibold">
-              Def-Space Autumn Internship 2026
+              Gen AI and AI Agent Internship
             </span>
             {""}, a flagship {""}
             <span className="text-orange-400 font-semibold">

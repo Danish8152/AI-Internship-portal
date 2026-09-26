@@ -4,12 +4,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { REGISTER } from "@/data/internship";
 
 const NAV_ITEMS = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Projects", href: "/projects" },
-  { label: "Registration", href: "/autumn-internship" },
+  { label: "Registration", href: REGISTER.href },
   { label: "Institution", href: "/institutions" },
   { label: "REG.INSTITUTION", href: "/institutional-registration" },
 ];

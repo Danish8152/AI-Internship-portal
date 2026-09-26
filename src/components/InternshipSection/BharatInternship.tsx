@@ -9,7 +9,7 @@ const BharatInternship: React.FC = () => {
         {/* LEFT: TEXT */}
         <div className="relative flex flex-col justify-center rounded-xl p-5 sm:p-7 lg:p-10 border-l-4 border-[#ff6b35] shadow-2xl bg-[linear-gradient(to_right_bottom,#0c141c,#14121b,#191118,#1c1114,#1c120f)]">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 leading-tight font-serif">
-            Bharat Def-Space Autumn Internship 2026
+            Gen AI and AI Agent Internship
           </h2>
 
           <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-4">

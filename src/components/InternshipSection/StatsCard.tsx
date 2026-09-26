@@ -9,7 +9,7 @@ interface StatItem {
 const stats: StatItem[] = [
   { value: "750", label: "Internship seats" },
   { value: "50+", label: "Mentors" },
-  { value: "6 Weeks", label: "Duration" },
+  { value: "2 Weeks", label: "Duration" },
 ];
 
 const StatsCard: React.FC = () => {

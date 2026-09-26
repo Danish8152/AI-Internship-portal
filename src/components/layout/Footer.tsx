@@ -13,6 +13,7 @@ import { IconType } from "react-icons";
 import Image from "next/image";
 import Link from "next/link";
 import ViewportGate from "@/components/perf/ViewportGate";
+import { INTERNSHIP } from "@/data/internship";
 
 // ─────────────────────────────────────────────────────────────
 // Type definitions
@@ -222,14 +223,13 @@ const Footer = () => {
 
             {/* Description */}
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-sm mx-auto md:mx-0">
-              Empowering Future Innovators in Space Exploration. We are
-              dedicated to advancing space science education and fostering
-              innovation across India.
+              Start from zero. Learn the fundamentals, then build with Gen AI
+              and AI agents through live demonstrations and assignments.
             </p>
             <p className="text-xs sm:text-sm font-semibold text-slate-200 leading-relaxed max-w-sm mx-auto md:mx-0">
-              Finally Get It: The Gen AI &amp; AI Agents Internship
+              {INTERNSHIP.fullName}
               <span className="block font-normal text-slate-400">
-                Led by Karan Bagul
+                Led by {INTERNSHIP.instructor}
               </span>
             </p>
 
