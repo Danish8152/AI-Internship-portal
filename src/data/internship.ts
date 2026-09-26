@@ -7,14 +7,9 @@ const duration = "2 weeks";
 export const REGISTRATION_URL = null as string | null;
 
 export const INTERNSHIP = {
-  name: "Finally Get It",
-  descriptor: "The Gen AI & AI Agents Internship",
   shortName: "Gen AI & AI Agents Internship",
   instructor: "Karan Bagul",
-  sessionCount,
   hoursEach,
-  totalHours: sessionCount * hoursEach,
-  duration,
   formatLine: `${sessionCount} live sessions · ${hoursEach} hours each · ${sessionCount * hoursEach} live hours · ${duration}`,
   sessionsLine: `${sessionCount} live sessions, ${hoursEach} hours each`,
 };

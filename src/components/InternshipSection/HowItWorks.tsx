@@ -38,7 +38,6 @@ const milestones = [
 const HowItWorks: React.FC = () => {
   return (
     <section
-      id="how"
       className="relative w-full py-14 sm:py-20 px-4 bg-gradient-to-br from-[#0b1a33] via-[#0a0c16] to-[#2a1710] border-y border-white/10"
     >
       <div className="max-w-6xl mx-auto">

@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className="h-full antialiased">
-      <body id="top" className="min-h-full flex flex-col pb-[64px] sm:pb-[68px]">
+      <body className="min-h-full flex flex-col pb-[64px] sm:pb-[68px]">
         <NavBanner />
         <Navbar />
         {children}

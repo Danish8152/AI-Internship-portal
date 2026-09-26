@@ -95,7 +95,7 @@ const families: Family[] = [
 
 const CurriculumJourney: React.FC = () => {
   return (
-    <section id="curriculum" className="relative w-full py-14 sm:py-20 px-4 bg-black">
+    <section className="relative w-full py-14 sm:py-20 px-4 bg-black">
       <div className="max-w-6xl mx-auto">
         <Reveal className="max-w-2xl">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white font-serif mb-4">

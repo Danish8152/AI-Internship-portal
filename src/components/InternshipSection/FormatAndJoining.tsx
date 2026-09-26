@@ -36,8 +36,7 @@ const FormatAndJoining: React.FC = () => {
 
         <Reveal delay={150} className="lg:sticky lg:top-24">
           <div
-            id="contact"
-            className="rounded-2xl border border-white/15 bg-[#141C2E] p-6 sm:p-8 scroll-mt-24"
+            className="rounded-2xl border border-white/15 bg-[#141C2E] p-6 sm:p-8"
           >
             <h3 className="text-xl sm:text-2xl font-bold text-white font-serif mb-5">
               Joining details

@@ -114,7 +114,7 @@ const ProjectGallery: React.FC = () => {
       : `Showing ${shown.length} of ${projects.length} projects: ${CATEGORY_LABEL[active]}`;
 
   return (
-    <section id="build" className="relative w-full py-14 sm:py-20 px-4 bg-black">
+    <section className="relative w-full py-14 sm:py-20 px-4 bg-black">
       <div className="max-w-6xl mx-auto">
         <Reveal className="text-center max-w-3xl mx-auto mb-8">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white font-serif mb-4">
