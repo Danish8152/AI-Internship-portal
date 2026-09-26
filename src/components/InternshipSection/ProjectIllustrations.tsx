@@ -1,4 +1,3 @@
-import React from "react";
 
 const T_LABEL = { fontFamily: "inherit", fontWeight: 700 } as const;
 const T_MUTED = { fontFamily: "inherit", fontWeight: 600 } as const;

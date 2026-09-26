@@ -5,12 +5,8 @@ import WhyUnderstanding from "@/components/InternshipSection/WhyUnderstanding";
 import ProjectGallery from "@/components/InternshipSection/ProjectGallery";
 import { CoreTech } from "@/components/global/CoreTech";
 import CurriculumJourney from "@/components/InternshipSection/CurriculumJourney";
-import AudienceFit from "@/components/InternshipSection/AudienceFit";
 import Schedule from "@/components/InternshipSection/Schedule";
 import HowItWorks from "@/components/InternshipSection/HowItWorks";
-import InternshipHighlights from "@/components/InternshipSection/InternshipHighlights";
-import FormatAndJoining from "@/components/InternshipSection/FormatAndJoining";
-import FinalCTA from "@/components/InternshipSection/FinalCTA";
 
 const page = () => {
   return (
@@ -22,12 +18,8 @@ const page = () => {
       <ProjectGallery />
       <CoreTech />
       <CurriculumJourney />
-      <AudienceFit />
       <Schedule />
       <HowItWorks />
-      <InternshipHighlights />
-      <FormatAndJoining />
-      <FinalCTA />
     </div>
   );
 };

@@ -1,7 +1,6 @@
 import React from "react";
 import { Check } from "lucide-react";
 import Reveal from "./Reveal";
-import Highlight from "./Highlight";
 
 const points = [
   { title: "Start from zero.", body: "No coding knowledge and no prior experience needed." },
@@ -18,8 +17,7 @@ const NotTooLate: React.FC = () => {
       <div className="max-w-6xl mx-auto grid gap-10 lg:grid-cols-[6fr_5fr] lg:gap-16 lg:items-start">
         <Reveal>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white font-serif leading-tight mb-5">
-            Feeling behind on GenAI? It&apos;s{" "}
-            <Highlight>not too late.</Highlight>
+            Feeling behind on GenAI?
           </h2>
           <p className="text-gray-300 text-base sm:text-lg leading-relaxed max-w-xl">
             Everyone seems to be talking about AI agents. If it all sounds like

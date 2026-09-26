@@ -44,7 +44,7 @@ export default function ViewportGate({
   }, [inView, once, rootMargin]);
 
   return (
-    <div ref={ref as any} aria-hidden={!inView}>
+    <div ref={ref} aria-hidden={!inView}>
       {inView ? children : null}
     </div>
   );

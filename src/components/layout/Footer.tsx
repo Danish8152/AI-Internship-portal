@@ -250,28 +250,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Column 2: Partner Logos - Improved responsive grid */}
-          {/* <div>
-             
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 gap-4 items-center">
-              {partnerLogos.map((item, idx) => (
-                <div 
-                  key={idx} 
-                  className="h-12 sm:h-14 flex items-center justify-center md:justify-start"
-                >
-                  <Image
-                  priority
-                    src={item.src}
-                    alt={item.alt}
-                    width={76}
-                    height={76}
-                    className="max-h-full w-auto object-contain  "
-                  />
-                </div>
-              ))}
-            </div>
-          </div> */}
-
           {/* Column 4: Contact Us */}
           <div className="text-center md:text-left">
             <h4 className="text-xs font-semibold uppercase tracking-wide text-slate-400 mb-4">

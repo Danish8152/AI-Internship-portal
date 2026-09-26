@@ -50,31 +50,6 @@ export default function Navbar() {
     <>
       {/* Header */}
       <header className="overflow-hidden w-full bg-black border-b border-white/5 sticky top-0 z-[60] backdrop-blur-md">
-        {/* <div className="w-full bg-red-600 text-white text-center px-4 py-2 text-sm sm:text-base font-semibold">
-          Last Date to Apply for Def-Space Autumn Internship: May 27, 2026
-        </div> */}
-        {/* <div className="w-full bg-indigo-900 text-white text-center px-4 py-2 text-sm sm:text-base flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5">
-          <span className="font-semibold">📢 Kindly access the LMS via the provided link and log in using your registered email and phone number. Orientation session: 5:00 PM – 8:00 PM</span>
-          <a
-            href="https://lms.bserc.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline font-bold text-blue-400 hover:text-blue-300 transition-colors"
-          >
-            Link
-          </a>
-        </div>
-        <div className="w-full bg-indigo-950 text-white text-center px-4 py-2 text-sm sm:text-base flex flex-wrap items-center justify-center gap-x-2 gap-y-1.5">
-          <span className="font-semibold">⚠️ If you face any issue logging into the LMS portal, kindly fill out this form.</span>
-          <a
-            href="https://forms.gle/q1W7zmNCEUxj1gUX6"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline font-bold text-blue-400 hover:text-blue-300 transition-colors"
-          >
-            Query Form
-          </a>
-        </div> */}
         <nav className="relative z-10 max-w-8xl mx-auto flex items-center justify-evenly px-4 sm:px-6 h-[70px]">
           {/* Logo */}
           <Link
