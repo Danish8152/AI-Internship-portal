@@ -6,12 +6,12 @@ import Footer from "@/components/layout/Footer";
 import RegistrationBar from "@/components/layout/RegistrationBar";
 
 export const metadata: Metadata = {
-  title: "Finally Get It: The Gen AI & AI Agents Internship | BSERC",
+  title: "The Gen AI & AI Agents Internship | BSERC",
   description:
     "A practical Gen AI and AI agents internship taught live by Karan Bagul: six live sessions of two hours each over two weekends. Start from zero, learn the fundamentals, then build apps, research, content and agentic AI workflows.",
   openGraph: {
     type: "website",
-    title: "Finally Get It: The Gen AI & AI Agents Internship",
+    title: "The Gen AI & AI Agents Internship",
     description:
       "Start from zero. Learn the fundamentals, then build with Gen AI and AI agents through live demonstrations and assignments.",
   },

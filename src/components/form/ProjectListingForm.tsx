@@ -28,7 +28,7 @@ import NotificationToast from "@/components/ui/NotificationToast";
 // this fixed tag in "additional remarks" so admins reviewing submissions can
 // tell where a given project actually came from. Not user-editable — the
 // value is not something the applicant should be typing or changing.
-const PROJECT_SOURCE_REMARK = "Def-Space Autumn Internship Project";
+const PROJECT_SOURCE_REMARK = "Def-Space AI Internship Project";
 
 // ─────────────────────────────────────────────────────────────
 // Type Definitions

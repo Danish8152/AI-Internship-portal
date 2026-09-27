@@ -9,7 +9,7 @@ import JoiningDetails from "@/components/About/JoiningDetails";
 export const metadata: Metadata = {
   title: "About | Gen AI & AI Agents Internship | BSERC",
   description:
-    "About Finally Get It: The Gen AI & AI Agents Internship: six live sessions of two hours each over two weekends. Start from zero, learn the fundamentals, then build apps, research, content and agentic AI workflows.",
+    "About The Gen AI & AI Agents Internship: six live sessions of two hours each over two weekends. Start from zero, learn the fundamentals, then build apps, research, content and agentic AI workflows.",
 };
 
 export default function AboutPage() {

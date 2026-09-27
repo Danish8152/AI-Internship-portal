@@ -6,7 +6,7 @@ const hoursEach = 2;
 const REGISTRATION_URL = null as string | null;
 
 export const INTERNSHIP = {
-  fullName: "Finally Get It: The Gen AI & AI Agents Internship",
+  fullName: "The Gen AI & AI Agents Internship",
   shortName: "Gen AI & AI Agents Internship",
   instructor: "Karan Bagul",
   hoursEach,
