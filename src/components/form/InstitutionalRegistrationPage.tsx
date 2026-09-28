@@ -1,0 +1,903 @@
+﻿"use client";
+
+import { useState, FormEvent } from "react";
+import {
+  ArrowRight,
+  AlertCircle,
+  Building2,
+  GraduationCap,
+  Rocket,
+  Users,
+  BadgeCheck,
+} from "lucide-react";
+import NotificationToast from "@/components/ui/NotificationToast";
+
+function getApiMessage(payload: unknown): string {
+  if (!payload || typeof payload !== "object") {
+    return "";
+  }
+
+  const typedPayload = payload as {
+    message?: unknown;
+    error?: unknown;
+  };
+
+  if (typeof typedPayload.message === "string" && typedPayload.message.trim()) {
+    return typedPayload.message.trim();
+  }
+
+  if (typeof typedPayload.error === "string" && typedPayload.error.trim()) {
+    return typedPayload.error.trim();
+  }
+
+  return "";
+}
+
+type InstitutionalCreateOrderResponse = {
+  success?: boolean;
+  requires_payment?: boolean;
+  key_id?: string;
+  order_id?: string;
+  amount?: number;
+  currency?: string;
+  registration_fee?: number;
+  country?: string;
+  partnership_type?: string;
+  message?: string;
+  error?: string;
+};
+
+interface InputProps {
+  id: string;
+  name: string;
+  label: string;
+  type?: string;
+  placeholder?: string;
+  required?: boolean;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  error?: string;
+  containerClassName?: string;
+}
+
+function FormInput({
+  id,
+  name,
+  label,
+  type = "text",
+  placeholder,
+  required = false,
+  value,
+  onChange,
+  error,
+  containerClassName,
+}: InputProps) {
+  return (
+    <div className={`mb-5 w-full ${containerClassName || ""}`}>
+      <label
+        htmlFor={id}
+        className="block text-zinc-100 text-[13px] font-semibold mb-2.5"
+      >
+        {label}
+        {required && <span className="text-red-500 ml-0.5">*</span>}
+      </label>
+      <input
+        type={type}
+        id={id}
+        name={name}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        required={required}
+        className={`
+          w-full px-4 py-3 rounded-md bg-[#111111] border text-zinc-100 
+          placeholder-zinc-600 focus:outline-none focus:border-orange-500/50 
+          transition-colors text-sm
+          ${error
+            ? "border-red-500 focus:border-red-500/50"
+            : "border-[#2a2a2a] hover:border-[#3a3a3a]"
+          }
+        `}
+      />
+      {error && (
+        <p
+          className="mt-2 text-xs text-red-400 flex items-center gap-1.5"
+          role="alert"
+        >
+          <AlertCircle className="w-3.5 h-3.5 flex-shrink-0" />
+          {error}
+        </p>
+      )}
+    </div>
+  );
+}
+
+// ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+
+interface SelectProps {
+  id: string;
+  name: string;
+  label: string;
+  options: { value: string; label: string }[];
+  placeholder?: string;
+  required?: boolean;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  error?: string;
+}
+
+function FormSelect({
+  id,
+  name,
+  label,
+  options,
+  placeholder = "--Select--",
+  required = false,
+  value,
+  onChange,
+  error,
+}: SelectProps) {
+  return (
+    <div className="mb-5 w-full">
+      <label
+        htmlFor={id}
+        className="block text-zinc-100 text-[13px] font-semibold mb-2.5"
+      >
+        {label}
+        {required && <span className="text-red-500 ml-0.5">*</span>}
+      </label>
+      <div className="relative">
+        <select
+          id={id}
+          name={name}
+          value={value}
+          onChange={onChange}
+          required={required}
+          className={`
+            w-full px-4 py-3 rounded-md bg-[#111111] border text-zinc-100 
+            focus:outline-none focus:border-orange-500/50 transition-colors text-sm appearance-none
+            ${error
+              ? "border-red-500 focus:border-red-500/50"
+              : "border-[#2a2a2a] hover:border-[#3a3a3a]"
+            }
+          `}
+        >
+          <option value="" disabled>
+            {placeholder}
+          </option>
+          {options.map((opt) => (
+            <option key={opt.value} value={opt.value}>
+              {opt.label}
+            </option>
+          ))}
+        </select>
+        <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-500">
+          <svg
+            className="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </div>
+      </div>
+      {error && (
+        <p
+          className="mt-2 text-xs text-red-400 flex items-center gap-1.5"
+          role="alert"
+        >
+          <AlertCircle className="w-3.5 h-3.5 flex-shrink-0" />
+          {error}
+        </p>
+      )}
+    </div>
+  );
+}
+
+// ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+
+interface TextareaProps {
+  id: string;
+  name: string;
+  label: string;
+  placeholder?: string;
+  rows?: number;
+  required?: boolean;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  error?: string;
+}
+
+function FormTextarea({
+  id,
+  name,
+  label,
+  placeholder,
+  rows = 4,
+  required = false,
+  value,
+  onChange,
+  error,
+}: TextareaProps) {
+  return (
+    <div className="mb-5 w-full">
+      <label
+        htmlFor={id}
+        className="block text-zinc-100 text-[13px] font-semibold mb-2.5"
+      >
+        {label}
+        {required && <span className="text-red-500 ml-0.5">*</span>}
+      </label>
+      <textarea
+        id={id}
+        name={name}
+        rows={rows}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        required={required}
+        maxLength={500}
+        className={`
+          w-full px-4 py-3 rounded-md bg-[#111111] border text-zinc-100 
+          placeholder-zinc-600 focus:outline-none focus:border-orange-500/50 
+          transition-colors text-sm resize-none
+          ${error
+            ? "border-red-500 focus:border-red-500/50"
+            : "border-[#2a2a2a] hover:border-[#3a3a3a]"
+          }
+        `}
+      />
+      <div className="flex justify-end mt-2">
+        <p className="text-xs text-zinc-600">
+          {value?.length || 0}/500 characters
+        </p>
+      </div>
+      {error && (
+        <p
+          className="mt-2 text-xs text-red-400 flex items-center gap-1.5"
+          role="alert"
+        >
+          <AlertCircle className="w-3.5 h-3.5 flex-shrink-0" />
+          {error}
+        </p>
+      )}
+    </div>
+  );
+}
+
+// ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+
+const SectionCard = ({
+  title,
+  children,
+  subtitle,
+  id,
+}: {
+  title: string;
+  subtitle?: string;
+  children: React.ReactNode;
+  id?: string;
+}) => (
+  <div
+    id={id}
+    className="bg-[#181818] rounded-xl border border-[#262626] p-6 md:p-8 mb-8 shadow-2xl"
+  >
+    <div className="mb-6">
+      <h3 className="text-white text-lg font-serif font-medium tracking-wide uppercase">
+        {title}
+      </h3>
+      {subtitle && <p className="text-zinc-400 text-sm mt-2">{subtitle}</p>}
+    </div>
+    {children}
+  </div>
+);
+
+// ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+
+const BenefitCard = ({
+  icon: Icon,
+  title,
+  description,
+}: {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+}) => (
+  <div className="bg-[#111111] border border-[#2a2a2a] rounded-lg p-5 hover:border-orange-500/30 transition-colors">
+    <div className="w-10 h-10 rounded-lg bg-orange-500/10 flex items-center justify-center mb-4">
+      <Icon className="w-5 h-5 text-orange-500" />
+    </div>
+    <h4 className="text-zinc-100 font-semibold mb-2">{title}</h4>
+    <p className="text-zinc-400 text-sm leading-relaxed">{description}</p>
+  </div>
+);
+
+// ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+
+//ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+
+function SubmitButton({
+  isSubmitting = false,
+  label = "Submit",
+  variant = "primary",
+}: {
+  isSubmitting?: boolean;
+  label?: string;
+  variant?: "primary" | "secondary";
+}) {
+  const baseStyles =
+    "flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-bold transition-all active:scale-95";
+  const variants = {
+    primary:
+      "bg-orange-500 hover:bg-orange-600 text-black shadow-lg shadow-orange-500/10 hover:shadow-orange-500/20 disabled:bg-zinc-800 disabled:text-zinc-500",
+    secondary:
+      "bg-[#111111] border border-[#2a2a2a] hover:border-orange-500/50 text-zinc-100 disabled:opacity-50",
+  };
+
+  return (
+    <button
+      type="submit"
+      disabled={isSubmitting}
+      className={`${baseStyles} ${variants[variant]}`}
+    >
+      {isSubmitting ? (
+        <>
+          <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24" fill="none">
+            <circle
+              className="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              strokeWidth="4"
+            />
+            <path
+              className="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+            />
+          </svg>
+          <span>Processing...</span>
+        </>
+      ) : (
+        <>
+          <span>{label}</span>
+          <ArrowRight className="w-5 h-5" />
+        </>
+      )}
+    </button>
+  );
+}
+
+
+// ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+
+
+
+// ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+// MAIN PAGE COMPONENT
+// ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+
+type InstitutionalFormData = {
+  schoolName: string;
+  board: string;
+  city: string;
+  state: string;
+  country: string;
+  pinCode: string;
+  contactName: string;
+  designation: string;
+  email: string;
+  phone: string;
+  studentCount: string;
+  headName: string;
+  headEmail: string;
+  headPhone: string;
+  message: string;
+};
+
+function createInitialFormData(): InstitutionalFormData {
+  return {
+    schoolName: "",
+    board: "",
+    city: "",
+    state: "",
+    country: "India",
+    pinCode: "",
+    contactName: "",
+    designation: "",
+    email: "",
+    phone: "",
+    studentCount: "",
+    headName: "",
+    headEmail: "",
+    headPhone: "",
+    message: "",
+  };
+}
+
+export default function InstitutionalRegistrationPage() {
+  const [formData, setFormData] = useState<InstitutionalFormData>(
+    createInitialFormData(),
+  );
+
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error" | null
+  >(null);
+  const [submitErrorMessage, setSubmitErrorMessage] = useState("");
+  const [successSnapshot, setSuccessSnapshot] = useState<{
+    contactName: string;
+    instituteName: string;
+  } | null>(null);
+
+  const closeSuccessNotification = () => {
+    setSubmitStatus(null);
+    setSuccessSnapshot(null);
+  };
+
+  const boardOptions = [
+    { value: "university", label: "University" },
+    { value: "college", label: "College" },
+    { value: "autonomous college", label: "Autonomous College" },
+    { value: "school", label: "School" },
+    { value: "cambridge", label: "Company" },
+    { value: "startup", label: "Startup" },
+    { value: "organization", label: "Organization" },
+    { value: "other", label: "Other" },
+  ];
+
+  const countryOptions = [
+    { value: "India", label: "India" },
+    { value: "Others", label: "Others" },
+  ];
+
+  const studentRangeOptions = [
+    { value: "1-100", label: "1-100 students" },
+    { value: "101-200", label: "101-200 students" },
+    { value: "201-300", label: "201-300 students" },
+    { value: "301-400", label: "301-400 students" },
+    { value: "401-500", label: "401-500 students" },
+    { value: "500+", label: "500+ students" },
+  ];
+
+  const handleChange = (name: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    if (submitStatus === "success") {
+      setSubmitStatus(null);
+      setSuccessSnapshot(null);
+    }
+
+    if (submitStatus === "error" && submitErrorMessage) {
+      setSubmitErrorMessage("");
+    }
+
+    if (errors[name]) {
+      setErrors((prev) => {
+        const n = { ...prev };
+        delete n[name];
+        return n;
+      });
+    }
+  };
+
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {};
+
+    if (!formData.schoolName.trim())
+      newErrors.schoolName = "Institute name is required";
+    if (!formData.board) newErrors.board = "Please select a board";
+    if (!formData.city.trim()) newErrors.city = "City is required";
+    if (!formData.state.trim()) newErrors.state = "State is required";
+    if (!formData.country.trim()) newErrors.country = "Country is required";
+    if (!formData.contactName.trim())
+      newErrors.contactName = "Contact person name is required";
+    if (!formData.designation.trim())
+      newErrors.designation = "Designation is required";
+
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Please enter a valid email";
+    }
+
+    if (!formData.phone.trim()) {
+      newErrors.phone = "Contact number is required";
+    }
+
+    if (!formData.studentCount)
+      newErrors.studentCount = "Please select student range";
+    if (!formData.headName.trim())
+      newErrors.headName = "Institution head name is required";
+
+    if (!formData.headEmail.trim()) {
+      newErrors.headEmail = "Head email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.headEmail)) {
+      newErrors.headEmail = "Please enter a valid email";
+    }
+
+    return newErrors;
+  };
+
+  const buildRegistrationPayload = () => ({
+    institute_name: formData.schoolName.trim(),
+    board: formData.board,
+    city: formData.city.trim(),
+    state: formData.state.trim(),
+    country: formData.country.trim(),
+    pin_code: formData.pinCode.trim(),
+    contact_name: formData.contactName.trim(),
+    designation: formData.designation.trim(),
+    email: formData.email.trim(),
+    phone: formData.phone.trim(),
+    student_count: formData.studentCount,
+    head_name: formData.headName.trim(),
+    head_email: formData.headEmail.trim(),
+    head_phone: formData.headPhone.trim(),
+    message: formData.message.trim(),
+  });
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+
+    const newErrors = validateForm();
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      setSubmitStatus("error");
+      setSuccessSnapshot(null);
+      setSubmitErrorMessage("Please fix the highlighted errors before submitting.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+    setSuccessSnapshot(null);
+    setSubmitErrorMessage("");
+    setErrors({});
+
+    const registrationPayload = buildRegistrationPayload();
+
+    try {
+      const registrationResponse = await fetch(
+        "/api/institutional-registration",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(registrationPayload),
+        },
+      );
+
+      const registrationResult = (await registrationResponse
+        .json()
+        .catch(() => ({}))) as InstitutionalCreateOrderResponse;
+
+      if (!registrationResponse.ok) {
+        throw new Error(
+          getApiMessage(registrationResult)
+          || "Unable to submit registration. Please try again.",
+        );
+      }
+
+      setSuccessSnapshot({
+        contactName: formData.contactName,
+        instituteName: formData.schoolName,
+      });
+      setFormData(createInitialFormData());
+      setErrors({});
+      setSubmitErrorMessage("");
+      setSubmitStatus("success");
+      setIsSubmitting(false);
+    } catch (err) {
+      setSubmitStatus("error");
+      setSuccessSnapshot(null);
+      setSubmitErrorMessage(
+        err instanceof Error && err.message
+          ? err.message
+          : "Unable to submit institutional registration. Please try again.",
+      );
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-[#0d0d0d] text-zinc-300 py-12 md:py-16 px-4 selection:bg-orange-500 selection:text-black">
+      <NotificationToast
+        visible={submitStatus === "success" && Boolean(successSnapshot)}
+        type="success"
+        title="Registration Submitted!"
+        message={
+          successSnapshot && (
+            <>
+              Thank you, {successSnapshot.contactName}. We have received your
+              application for{" "}
+              <span className="text-zinc-200">{successSnapshot.instituteName}</span>
+              . Your registration details have been saved successfully.
+            </>
+          )
+        }
+        onClose={closeSuccessNotification}
+      />
+
+      <div className="max-w-6xl mx-auto">
+        {/* Page Header */}
+        <div className="mb-12 md:mb-16">
+          <div className="flex items-center gap-4 mb-4">
+            <span className="text-orange-500 text-xs font-bold tracking-[0.2em] uppercase">
+              Institutional Partnerships
+            </span>
+            <div className="h-px w-16 bg-orange-500"></div>
+          </div>
+          <h1 className="text-4xl md:text-5xl font-serif font-bold text-white mb-5 leading-tight">
+            Register Your Institution
+          </h1>
+          <p className="text-zinc-400 text-sm md:text-base max-w-7xl leading-relaxed">
+            <span className="text-orange-500 font-bold uppercase">
+              {" "}
+              Partner with BSERC{" "}
+            </span>{" "}
+            to bring premium defence and space education to your institution.
+            Establish your institute as a leader in emerging technology education
+            while providing students with direct exposure to India&apos;s space and
+            defence sector careers.
+          </p>
+        </div>
+
+
+
+
+        {/* Why Partner Section (old version - can be removed) */}
+        <SectionCard
+          title="Partner With BSERC"
+          subtitle="Elevate your institution's academic standing and provide students access to India's premier defence and space sector ecosystem"
+        >
+          <div className="grid md:grid-cols-3 gap-4">
+            <BenefitCard
+              icon={GraduationCap}
+              title="Strengthen STEM Profile"
+              description="Position your institute as a forward-looking institution at the forefront of innovation in defence and space technology education."
+            />
+            <BenefitCard
+              icon={BadgeCheck}
+              title="Student Achievement Visibility"
+              description="Showcase student projects, merit certificates, and verified career pathways in institutional newsletters and annual reports."
+            />
+            <BenefitCard
+              icon={Rocket}
+              title="Career Ecosystem Access"
+              description="Direct mentorship and guidance from ISRO, DRDO, HAL professionals and leading private space enterprises for student career planning."
+            />
+          </div>
+        </SectionCard>
+
+        {/* Registration Form */}
+        <SectionCard
+          title="Institutional Registration Form"
+          subtitle="Complete the details below to initiate your partnership"
+        >
+          <form onSubmit={handleSubmit} noValidate className="space-y-1">
+            {/* Status Messages */}
+            {submitStatus === "error" && (
+              <div className="mb-6 p-4 bg-[#111111] border border-red-900/30 rounded-xl flex items-start gap-3">
+                <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
+                <p className="text-sm text-red-300">
+                  {submitErrorMessage || "Please fix the highlighted errors before submitting."}
+                </p>
+              </div>
+            )}
+
+            {/* Institute Details */}
+            <div className="mb-8 pb-6 border-b border-[#2a2a2a]">
+              <h4 className="text-zinc-100 font-semibold mb-4 flex items-center gap-2">
+                <Building2 className="w-4 h-4 text-orange-500" />
+                Institutional Information
+              </h4>
+              <div className="grid md:grid-cols-2 gap-4">
+                <FormInput
+                  id="schoolName"
+                  name="schoolName"
+                  label="Institute Name"
+                  placeholder="Enter full institute name"
+                  required
+                  value={formData.schoolName}
+                  onChange={(e) => handleChange("schoolName", e.target.value)}
+                  error={errors.schoolName}
+                />
+                <FormSelect
+                  id="board"
+                  name="board"
+                  label="University/Board Affiliation"
+                  options={boardOptions}
+                  placeholder="Select Board"
+                  required={true}
+                  value={formData.board}
+                  onChange={(e) => handleChange("board", e.target.value)}
+                  error={errors.board}
+                />
+                <FormInput
+                  id="city"
+                  name="city"
+                  label="City"
+                  placeholder="Enter city"
+                  required
+                  value={formData.city}
+                  onChange={(e) => handleChange("city", e.target.value)}
+                  error={errors.city}
+                />
+                <FormInput
+                  id="state"
+                  name="state"
+                  label="State"
+                  placeholder="Enter state"
+                  required
+                  value={formData.state}
+                  onChange={(e) => handleChange("state", e.target.value)}
+                  error={errors.state}
+                />
+                <div className="flex flex-col md:flex-row gap-4">
+                  <FormInput
+                    id="pinCode"
+                    name="pinCode"
+                    label="PIN Code"
+                    type="text"
+                    placeholder="Enter PIN code"
+                    value={formData.pinCode}
+                    onChange={(e) => handleChange("pinCode", e.target.value)}
+                    error={errors.pinCode}
+                  />
+                  <FormSelect
+                    id="country"
+                    name="country"
+                    label="Country"
+                    options={countryOptions}
+                    placeholder="Select Country"
+                    required={true}
+                    value={formData.country}
+                    onChange={(e) => handleChange("country", e.target.value)}
+                    error={errors.country}
+                  />
+                </div>
+                <FormSelect
+                  id="studentCount"
+                  name="studentCount"
+                  label="Estimated Number of Students"
+                  options={studentRangeOptions}
+                  placeholder="Select Range"
+                  required={true}
+                  value={formData.studentCount}
+                  onChange={(e) => handleChange("studentCount", e.target.value)}
+                  error={errors.studentCount}
+                />
+              </div>
+            </div>
+
+            {/* Contact Person */}
+            <div className="mb-8 pb-6 border-b border-[#2a2a2a]">
+              <h4 className="text-zinc-100 font-semibold mb-4 flex items-center gap-2">
+                <Users className="w-4 h-4 text-orange-500" />
+                Primary Contact Details
+              </h4>
+              <div className="grid md:grid-cols-2 gap-4">
+                <FormInput
+                  id="contactName"
+                  name="contactName"
+                  label="Contact Person Name"
+                  placeholder="Principal/Coordinator name"
+                  type="text"
+                  required
+                  value={formData.contactName}
+                  onChange={(e) => handleChange("contactName", e.target.value)}
+                  error={errors.contactName}
+                />
+                <FormInput
+                  id="designation"
+                  name="designation"
+                  label="Designation"
+                  placeholder="Principal/Science Coordinator..."
+                  required
+                  value={formData.designation}
+                  onChange={(e) => handleChange("designation", e.target.value)}
+                  error={errors.designation}
+                />
+                <FormInput
+                  id="email"
+                  name="email"
+                  label="Official Email"
+                  type="email"
+                  placeholder="contact@institute.edu.in"
+                  required
+                  value={formData.email}
+                  onChange={(e) => handleChange("email", e.target.value)}
+                  error={errors.email}
+                />
+                <FormInput
+                  id="phone"
+                  name="phone"
+                  label="Contact Number"
+                  type="tel"
+                  placeholder="Enter contact number"
+                  required
+                  value={formData.phone}
+                  onChange={(e) => handleChange("phone", e.target.value)}
+                  error={errors.phone}
+                />
+              </div>
+            </div>
+
+            {/* Institution Head */}
+            <div className="mb-8 pb-6 border-b border-[#2a2a2a]">
+              <h4 className="text-zinc-100 font-semibold mb-4 pt-5 flex items-center gap-2">
+                <Users className="w-4 h-4 text-orange-500" />
+                Institutional Head Details
+              </h4>
+
+              <div className="grid md:grid-cols-2 gap-4">
+                <FormInput
+                  id="headName"
+                  name="headName"
+                  label="Institutional Head Name"
+                  placeholder="Principal/Director name"
+                  required
+                  value={formData.headName}
+                  onChange={(e) => handleChange("headName", e.target.value)}
+                  error={errors.headName}
+                />
+                <FormInput
+                  id="headEmail"
+                  name="headEmail"
+                  label="Institutional Head Email"
+                  type="email"
+                  placeholder="principal@institute.edu.in"
+                  required
+                  value={formData.headEmail}
+                  onChange={(e) => handleChange("headEmail", e.target.value)}
+                  error={errors.headEmail}
+                />
+                <FormInput
+                  id="headPhone"
+                  name="headPhone"
+                  label="Institutional Head Phone"
+                  type="tel"
+                  placeholder="Enter institutional head phone"
+                  value={formData.headPhone}
+                  onChange={(e) => handleChange("headPhone", e.target.value)}
+                  error={errors.headPhone}
+                />
+              </div>
+            </div>
+
+            {/* Additional Message */}
+            <div className="mb-8">
+              <FormTextarea
+                id="message"
+                name="message"
+                label="Additional Message"
+                placeholder="Any specific requirements, questions, or notes for our partnerships team..."
+                rows={4}
+                value={formData.message}
+                onChange={(e) => handleChange("message", e.target.value)}
+              />
+            </div>
+
+            {/* Submit Button */}
+            <div className="pt-4 flex flex-col md:flex-row justify-center items-center gap-6">
+              <SubmitButton
+                isSubmitting={isSubmitting}
+                label="Submit Registration"
+              />
+            </div>
+          </form>
+        </SectionCard>
+      </div>
+    </div>
+  );
+}
